@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package groupar.co.productos.excepeciones;
+package groupar.co.productos.exceptions;
 
 /**
  *
  * @author igorariza
  */
-public class LecturaDataExt {
+public class ReadDataExt extends AccessDataExt{
+    
+    public ReadDataExt(String mensaje) {
+        super(mensaje);
+    }
+    
     
 }
