@@ -4,9 +4,8 @@ package groupar.co.product.service;
 import groupar.co.data.AccesDataFileImpl;
 import groupar.co.data.InAccessData;
 import groupar.co.domain.Product;
-import groupar.co.productos.exceptions.AccessDataExt;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static groupar.co.product.service.InProductAll.NAME_SRC;
+import groupar.co.productos.exceptions.*;
 
 public class ProductAllImpl implements InProductAll{
     private final InAccessData data;
@@ -31,17 +30,43 @@ public class ProductAllImpl implements InProductAll{
 
     @Override
     public void tolistProduct() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            var products = this.data.toList(NAME_SRC);
+            for(var product: products){
+                System.out.println("Product= "+ product);
+            }
+        } catch (AccessDataExt ex) {
+            System.out.println("Erro acceso a los datos");
+            ex.printStackTrace(System.out);
+        }
     }
 
     @Override
     public void searchProduct(String search) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String result = null;
+        try {
+            result = this.data.searchProduct(NAME_SRC, search);
+        } catch (AccessDataExt ex) {
+            System.out.println("Error acceso a datos");
+            ex.printStackTrace(System.out);
+        }
+        System.out.println("Resultado: "+ result);
     }
 
     @Override
     public void initProductAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            if(this.data.exist(NAME_SRC)){
+                data.deleteSc(NAME_SRC);
+                data.createSrc(NAME_SRC);                
+            }
+            else{
+                data.createSrc(NAME_SRC);
+            }
+        } catch (AccessDataExt ex) {
+            System.out.println("Error al iniciar todos los productos");
+            ex.printStackTrace(System.out);
+        }
     }
     
 }
