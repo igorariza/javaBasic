@@ -21,7 +21,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Producto{" + "nombre=" + nombre + '}';
+        return this.nombre;
     }
 
 }
