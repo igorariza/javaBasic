@@ -66,5 +66,6 @@ nbdist/
 # Ignore all local history of files
 .history
 .ionide
+product.txt
 
 # End of https://www.toptal.com/developers/gitignore/api/java,netbeans,visualstudiocode,git
